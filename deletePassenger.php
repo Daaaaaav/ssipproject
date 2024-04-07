@@ -3,7 +3,7 @@ require_once("header.php");
 require_once("data.php");
 $db = new DBConnection();
 if (isset($_POST["submit"]) and isset($_GET["id"])) {
-   $db->deleteRoom($_GET["id"]);
+   $db->deletePassenger($_GET["id"]);
    header("Location: listPassenger.php");
 }
 ?>
