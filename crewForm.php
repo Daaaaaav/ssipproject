@@ -12,7 +12,7 @@ $rooms = $db->getAllRooms()->fetchAll();
 
 // if there is id in the URL, get data
 if (isset($_GET["id"])) {
-   $result = $db->getCrewById($_GET["id"]);
+   $result = $db->getCrewMemberById($_GET["id"]);
    $name = $position = $salary = "";
    if ($result) {
        $crew = $result->fetch();
