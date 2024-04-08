@@ -1,7 +1,4 @@
 <?php
-/**
-* Check submit button, take data and save to DB
-*/
 require_once("header.php");
 require_once("data.php");
 $db = new DBConnection();
@@ -10,24 +7,27 @@ $errors = [];
 $ferries = $db->getAllFerries()->fetchAll();
 $rooms = $db->getAllRooms()->fetchAll();
 
-// if there is id in the URL, get data
+// if there is an id in the URL, get data
 if (isset($_GET["id"])) {
-   $result = $db->getCrewMemberById($_GET["id"]);
-   $name = $position = $salary = "";
-   if ($result) {
-       $crew = $result->fetch();
-       $name = $crew["name"];
-       $position = $crew["position"];
-       $salary = $crew["salary"];
-       $ferry = $crew["ferry_id"];
-       $room = $crew["room_id"];
-   }
+    $result = $db->getCrewMemberById($_GET["id"]);
+    $name = $position = $salary = $ferry = $room = "";
+    if ($result) {
+        $crew = $result->fetch();
+        $name = $crew["name"];
+        $position = $crew["position"];
+        $salary = $crew["salary"];
+        $ferry = $crew["ferry_id"];
+        $room = $crew["room_id"];
+    }
 }
+
 if (isset($_POST["submit"])) {
-    // check name first, set error if no value
+    // Validate Crew Member data
     if (empty($_POST["name"])) {
         array_push($errors, "Name is required");
-    } 
+    } else {
+        $name = $_POST["name"];
+    }
 
     if (empty($_POST["position"])) {
         array_push($errors, "Position is required");
@@ -46,22 +46,27 @@ if (isset($_POST["submit"])) {
         }
     }
 
-    $name = $_POST["name"];
-    $position = $_POST["position"];
-    $salary = $_POST["salary"];
-    $ferry = $_POST["ferry_id"];
-    $room = $_POST["room_id"];
- 
+    // Assign selected ferry and room
+    $ferry = $_POST["ferry"];
+    $room = $_POST["room"];
+
+    // Check if the selected room is already booked
+    $isRoomBooked = $db->isRoomBooked($room);
+    if ($isRoomBooked) {
+        array_push($errors, "Selected room is already booked.");
+    }
+
     if (count($errors) == 0) {
         if (isset($_GET["id"])) {
-            $db->updateCrewMember($_GET["id"], $name, $position, $salary, $ferry_id, $room_id);
+            $db->updateCrewMember($_GET["id"], $name, $position, $salary, $ferry, $room);
         } else {
-            $db->addCrewMember($name, $position, $salary, $ferry_id, $room_id);
+            $db->addCrewMember($name, $position, $salary, $ferry, $room);
         }
         header("Location: listCrew.php");
+        exit();
     }
- }
- ?>
+}
+?>
 
 <div class="container mt-4">
    <form class="form" action="" method="post">
