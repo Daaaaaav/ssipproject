@@ -9,6 +9,9 @@ $errors = [];
 
 $ferries = $db->getAllFerries()->fetchAll();
 
+// Initialize variables
+$name = $floor = $ferry = '';
+
 // if there is id in the URL, get data
 if (isset($_GET["id"])) {
    $result = $db->getRoomById($_GET["id"]);
@@ -24,6 +27,8 @@ if (isset($_POST["submit"])) {
     // check name first, set error if no value
     if (empty($_POST["name"])) {
         array_push($errors, "Name is required");
+    } else {
+        $name = $_POST["name"];
     }
  
     if (empty($_POST["floor"])) {
@@ -33,17 +38,17 @@ if (isset($_POST["submit"])) {
             array_push($errors, "Floor must be a number");
         }
     }
- 
-    $name = $_POST["name"];
-    $floor = $_POST["floor"];
+
+    $ferry = $_POST["ferry"];
  
     if (count($errors) == 0) {
         if (isset($_GET["id"])) {
-            $db->updateRoom($_GET["id"], $name, $floor, $ferry_id);
+            $db->updateRoom($_GET["id"], $name, $floor, $ferry);
         } else {
-            $db->addRoom($name, $floor, $ferry_id);
+            $db->addRoom($name, $floor, $ferry);
         }
         header("Location: listRoom.php");
+        exit();
     }
  }
  ?>
