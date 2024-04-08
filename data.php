@@ -70,7 +70,7 @@ class DBConnection {
  public function updateRoom($id, $name, $floor, $ferry_id) {
     $sql = "UPDATE room SET name = ?, floor = ?, ferry_id = ? WHERE id = ?";
     $result = $this->conn->prepare($sql);
-    $result->execute([$id, $name, $floor, $ferry_id]);
+    $result->execute([$name, $floor, $ferry_id, $id]);
 }
 
 public function deleteRoom($id) {
@@ -102,7 +102,7 @@ public function deleteRoom($id) {
  public function updatePassenger($id, $name, $departuretime, $ferry_id, $room_id) {
     $sql = "UPDATE passenger SET name = ?, departuretime = ?, ferry_id = ?, room_id = ? WHERE id = ?";
     $result = $this->conn->prepare($sql);
-    $result->execute([$id, $name, $departuretime, $ferry_id, $room_id]);
+    $result->execute([$name, $departuretime, $ferry_id, $room_id, $id]);
 }
 
 public function deletePassenger($id) {
@@ -133,7 +133,7 @@ public function addCrewMember($name, $position, $salary, $ferry_id, $room_id) {
 public function updateCrewMember($id, $name, $position, $salary, $ferry_id, $room_id) {
    $sql = "UPDATE crew SET name = ?, position = ?, salary = ?, ferry_id = ?, room_id = ? WHERE id = ?";
    $result = $this->conn->prepare($sql);
-   $result->execute([$name, $position, $salary, $ferry_id, $room_id]);
+   $result->execute([$name, $position, $salary, $ferry_id, $room_id, $id]);
 }
 
 public function deleteCrewMember($id) {
@@ -165,7 +165,7 @@ public function getAllCountries() {
  public function updateCountry($id, $name, $continent, $ports) {
     $sql = "UPDATE country SET name = ?, continent = ?, ports = ? WHERE id = ?";
     $result = $this->conn->prepare($sql);
-    $result->execute([$id, $name, $continent, $ports]);
+    $result->execute([$name, $continent, $ports, $id]);
 }
 
 public function deleteCountry($id) {
