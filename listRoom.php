@@ -19,7 +19,7 @@
        </tr>
        <?php
        foreach ($rooms as $row) {
-        $ferry = $db->getAllFerries($row['ferry_id'])->fetch();
+        $ferry = $db->getFerryById($row['ferry_id'])->fetch();
        ?>
        <tr>
            <td><?= $row["name"] ?></td>
