@@ -46,6 +46,12 @@ if (isset($_POST["submit"])) {
     $ferry = $_POST["ferry"];
     $room = $_POST["room"];
 
+    // Check if the selected room is already booked
+    $isRoomBooked = $db->isRoomBooked($room);
+    if ($isRoomBooked) {
+        array_push($errors, "Selected room is already booked.");
+    }
+
     if (count($errors) == 0) {
         if (isset($_GET["id"])) {
             $db->updatePassenger($_GET["id"], $name, $departuretime, $ferry, $room);
