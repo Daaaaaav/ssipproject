@@ -21,8 +21,8 @@
    $db = new DBConnection();
    $ferries = $db->getAllFerries(); 
    foreach ($ferries as $row) {
-    $ownership = $db->getAllOwnership($row['ownership_id'])->fetch();
-    $country = $db->getAllCountries($row['country_id'])->fetch();
+    $ownership = $db->getOwnershipById($row['ownership_id'])->fetch();
+    $country = $db->getCountryById($row['country_id'])->fetch();
 ?>
 <tr>
     <td><?= $row["name"]; ?></td>
@@ -49,3 +49,4 @@
 </div>
 </body>
 </html>
+
