@@ -21,8 +21,8 @@
        </tr>
        <?php
        foreach ($crew as $row) {
-        $ferry = $db->getAllFerries($row['ferry_id'])->fetch();
-        $room = $db->getAllRooms($row['room_id'])->fetch();
+        $ferry = $db->getFerryById($row['ferry_id'])->fetch();
+        $room = $db->getRoomById($row['room_id'])->fetch();
        ?>
        <tr>
            <td><?= $row["name"] ?></td>
