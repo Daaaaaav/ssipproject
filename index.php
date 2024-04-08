@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once("header.php"); ?>
-<body>
+<body class="bg">
 <?php include_once("nav.php"); ?>
 <div class="container mt-3">
-   <table class="table table-sm table-bordered">
+   <table class="nautical-table table-sm table-bordered">
        <tr>
            <th>Name</th>
            <th>Max Capacity</th>
@@ -33,10 +33,10 @@
     <td><?= $ownership["name"]; ?></td>
     <td><?= $country["name"]; ?></td>
     <td>
-        <a class="btn btn-warning" href="ferryForm.php?id=<?= $row['id']; ?>">Edit</a>
+        <a class="btn btn-edit" href="ferryForm.php?id=<?= $row['id']; ?>">Edit</a>
     </td>
     <td>
-        <a class="btn btn-danger" href="deleteFerry.php?id=<?= $row['id']; ?>">Delete</a>
+        <a class="btn btn-del" href="deleteFerry.php?id=<?= $row['id']; ?>">Delete</a>
     </td>
 </tr>
 <?php
@@ -44,9 +44,8 @@
 ?>
 </table>
 <div>
-    <a class="btn btn-success" href="ferryForm.php">Add New Data</a>
+    <a class="btn btn-add" href="ferryForm.php">Add New Data</a>
 </div>
 </div>
 </body>
 </html>
-

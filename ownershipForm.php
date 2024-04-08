@@ -64,8 +64,8 @@ if (isset($_POST["submit"])) {
                     value="<?php echo htmlspecialchars($networth); ?>" placeholder="Enter Net Worth" />
             </div>
         </div>
-        <input class="mt-3 btn btn-primary" type="submit" name="submit" value="Save Record" />
-        <a class="mt-3 btn btn-warning" href="listOwnership.php">Cancel</a>
+        <input class="mt-3 btn btn-add" type="submit" name="submit" value="Save Record" />
+        <a class="mt-3 btn btn-del" href="listOwnership.php">Cancel</a>
     </form>
     <?php if (count($errors) > 0) : ?>
         <div class="mt-4">

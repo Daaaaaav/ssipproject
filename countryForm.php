@@ -70,8 +70,8 @@ if (isset($_POST["submit"])) {
                     value="<?php echo htmlspecialchars($ports); ?>" placeholder="Enter Number of Ports"/>
             </div>
         </div>
-        <input class="mt-3 btn btn-primary" type="submit" name="submit" value="Save Record"/>
-        <a class="mt-3 btn btn-warning" href="listCountry.php">Cancel</a>
+        <input class="mt-3 btn btn-add" type="submit" name="submit" value="Save Record"/>
+        <a class="mt-3 btn btn-del" href="listCountry.php">Cancel</a>
     </form>
     <div class="mt-4">
         <ul class="error">

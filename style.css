@@ -1,0 +1,101 @@
+:root {
+    --nautical-blue: #0077b6;
+    --nautical-red: #f94144;
+    --nautical-yellow: #f8af56;
+    --nautical-white: #f9f9f9;
+    --nautical-cloud: #CCC9C9;
+}
+
+.nautical-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.nautical-table th,
+.nautical-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--nautical-blue);
+}
+
+.nautical-table th {
+    background-color: var(--nautical-blue);
+    color: var(--nautical-white);
+}
+
+.nautical-table tr {
+    background-color: var(--nautical-white);
+}
+
+.nautical-table tr:nth-child(even) {
+    background-color: var(--nautical-yellow);
+}
+
+.nautical-table tr:hover {
+    background-color: var(--nautical-red);
+}
+
+.bg {
+    background-image: url('ship.jpg');
+    background-size: cover, no-repeat;
+    background-position: center;
+    font-weight: bold;
+}
+
+.btn-add {
+    background-color: var(--nautical-blue);
+    border-color: var(--nautical-blue);
+    color: var(--nautical-white);
+}
+
+.btn-add:hover {
+    background-color: greenyellow;
+    border-color: greenyellow;
+    color: var(--nautical-white);
+}
+
+.btn-edit:hover {
+    background-color: var(--nautical-red);
+    border-color: var(--nautical-red);
+}
+
+.btn-edit {
+    background-color: var(--nautical-cloud);
+    border-color: var(--nautical-cloud);
+}
+
+.btn-edit:hover {
+    background-color: var(--nautical-red);
+    border-color: var(--nautical-red);
+}
+
+.btn-del {
+    background-color: var(--nautical-red);
+    border-color: var(--nautical-red);
+    color: var(--nautical-white);
+}
+
+.btn-del:hover {
+    background-color: black;
+    border-color: black;
+    color: var(--nautical-blue);
+}
+
+.ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--nautical-cloud);
+  }
+  
+  .li {
+    background-color: var(--nautical-white);
+    color: black;
+    margin: 8px 4px 4px 8px;
+    font-weight: bold;
+  }
+
+  .li:hover {
+    opacity: 0.5;
+  }

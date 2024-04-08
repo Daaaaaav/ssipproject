@@ -10,7 +10,7 @@ if (isset($_POST["submit"]) and isset($_GET["id"])) {
 <div class="container">
    <form action="" method="post">
        Are you sure you want to delete this data?<br/>
-       <input class="mt-3 btn btn-danger" type="submit" name="submit" value="Confirm"/>
-       <a class="mt-3 btn btn-info" href="listCrew.php">Cancel</a>
+       <input class="mt-3 btn btn-del" type="submit" name="submit" value="Confirm"/>
+       <a class="mt-3 btn btn-edit" href="listCrew.php">Cancel</a>
    </form>
 </div>

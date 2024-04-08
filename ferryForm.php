@@ -123,8 +123,8 @@ if (isset($_POST["submit"])) {
                 </select>
             </div>
         </div>
-        <input class="mt-3 btn btn-primary" type="submit" name="submit" value="Add Record"/>
-        <a class="mt-3 btn btn-warning" href="index.php">Cancel</a>
+        <input class="mt-3 btn btn-add" type="submit" name="submit" value="Add Record"/>
+        <a class="mt-3 btn btn-del" href="index.php">Cancel</a>
     </form>
     <div class="mt-4">
         <ul class="error">

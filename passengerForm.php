@@ -37,14 +37,18 @@ if (isset($_POST["submit"])) {
         array_push($errors, "Booked departure time is required");
     } else {
         $departuretime = $_POST["departuretime"];
-        if (strlen($departuretime) != 4) {
-            array_push($errors, "Departure time must be exactly 4 characters");
+        if (strlen($departuretime) != 5) {
+            array_push($errors, "Departure time must be exactly 5 characters");
         }
     }
 
-    // Assign selected ferry and room
-    $ferry = $_POST["ferry"];
-    $room = $_POST["room"];
+    if (isset($_POST["ferry"])) {
+        $ferry = $_POST["ferry"];
+    }
+    if (isset($_POST["room"])) {
+        $room = $_POST["room"];
+    }
+
 
     // Check if the selected room is already booked
     $isRoomBooked = $db->isRoomBooked($room);
@@ -110,8 +114,8 @@ if (isset($_POST["submit"])) {
                </select>
            </div>
        </div>
-       <input class="mt-3 btn btn-primary" type="submit" name="submit" value="Add Record"/>
-       <a class="mt-3 btn btn-warning" href="listPassenger.php">Cancel</a>
+       <input class="mt-3 btn btn-add" type="submit" name="submit" value="Add Record"/>
+       <a class="mt-3 btn btn-del" href="listPassenger.php">Cancel</a>
    </form>
    <div class="mt-4">
        <ul class="error">

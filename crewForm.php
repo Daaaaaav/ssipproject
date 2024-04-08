@@ -7,6 +7,9 @@ $errors = [];
 $ferries = $db->getAllFerries()->fetchAll();
 $rooms = $db->getAllRooms()->fetchAll();
 
+$name = $position = $salary = $ferry = $room = '';
+$crew = [];
+
 // if there is an id in the URL, get data
 if (isset($_GET["id"])) {
     $result = $db->getCrewMemberById($_GET["id"]);
@@ -34,8 +37,10 @@ if (isset($_POST["submit"])) {
     } else {
         if (strlen($_POST["position"]) <= 3) {
             array_push($errors, "Position must be at least 4 characters");
+        } else {
+            $position = $_POST["position"];
         }
-    }
+}
  
     if (empty($_POST["salary"])) {
         array_push($errors, "Salary is required");
@@ -121,8 +126,8 @@ if (isset($_POST["submit"])) {
                </select>
            </div>
        </div>
-       <input class="mt-3 btn btn-primary" type="submit" name="submit" value="Add Record"/>
-       <a class="mt-3 btn btn-warning" href="listCrew.php">Cancel</a>
+       <input class="mt-3 btn btn-add" type="submit" name="submit" value="Add Record"/>
+       <a class="mt-3 btn btn-del" href="listCrew.php">Cancel</a>
    </form>
    <div class="mt-4">
        <ul class="error">
