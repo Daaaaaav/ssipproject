@@ -6,33 +6,28 @@
    require("data.php");
    include_once("nav.php");
    $db = new DBConnection();
-   $passengers = $db->getAllPassengers();
+   $ownerships = $db->getAllOwnership();
 ?>
 <div class="container mt-3">
    <table class="table table-sm table-bordered">
        <tr>
-           <th>Name</th>
-           <th>Booked Departure Time</th>
-           <th>Booked Ferry</th>
-           <th>Booked Room</th>
+           <th>Company Name</th>
+           <th>Ownership Net Worth (USD)</th>
+
            <th>Edit</th>
            <th>Delete</th>
        </tr>
        <?php
-       foreach ($passengers as $row) {
-        $ferry = $db->getFerryById($row['ferry_id'])->fetch();
-        $room = $db->getRoomById($row['room_id'])->fetch();
+       foreach ($ownerships as $row) {
        ?>
        <tr>
            <td><?= $row["name"] ?></td>
-           <td><?= $row["departuretime"] ?></td>
-           <td><?= $ferry["name"] ?></td>
-           <td><?= 'Level ' . $room["floor"] . ' - ' . ' Room ' . $room["name"] ?></td>
+           <td><?= $row["networth"] ?></td>
            <td>
-               <a class="btn btn-warning" href="passengerForm.php?id=<?= $row['id'] ?>">Edit</a>
+               <a class="btn btn-warning" href="ownershipForm.php?id=<?= $row['id'] ?>">Edit</a>
            </td>
            <td>
-               <a class="btn btn-danger" href="deletePassenger.php?id=<?= $row['id']?>">Delete</a>
+               <a class="btn btn-danger" href="deleteOwnership.php?id=<?= $row['id']?>">Delete</a>
            </td>
        </tr>
        <?php
@@ -40,7 +35,7 @@
        ?>
    </table>
    <div>
-       <a class="btn btn-success" href="passengerForm.php">Add New Data</a>
+       <a class="btn btn-success" href="ownershipForm.php">Add New Data</a>
    </div>
 </div>
 </body>
