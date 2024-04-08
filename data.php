@@ -14,6 +14,24 @@ class DBConnection {
        $this->conn = null;
    }
 
+   public function isRoomBooked($room_id) {
+      try {
+          $stmt = $this->conn->prepare("SELECT COUNT(*) FROM passenger WHERE room_id = ? UNION ALL SELECT COUNT(*) FROM crew WHERE room_id = ?");
+          $stmt->execute([$room_id, $room_id]);
+          $counts = $stmt->fetchAll(PDO::FETCH_COLUMN);
+          foreach ($counts as $count) {
+              if ($count > 0) {
+                  return true;
+              }
+          }
+          return false;
+      } catch (PDOException $e) {
+          die("Error: " . $e->getMessage());
+      }
+  }
+  
+  
+
    public function getAllFerries() {
     $sql = "SELECT id, name, capacity, ticketfee, transit, destination, ownership_id, country_id FROM ferry";
     $result = $this->conn->prepare($sql);
