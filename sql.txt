@@ -1,4 +1,4 @@
-Buat table satu per satu di phpmyadmin, ownership > country > ferry > room > passenger > crew, trimss :)
+Create tables ownership > country > ferry > room > passenger > crew
 
 CREATE TABLE ownership (
 	id int AUTO_INCREMENT PRIMARY KEY,
