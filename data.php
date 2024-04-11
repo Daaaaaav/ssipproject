@@ -62,11 +62,24 @@ class DBConnection {
  public function deleteFerry($id) {
    $this->deleteRoomByFerryId($id);
    $this->deletePassengerByFerryId($id);
-   $this->deleteCrewMembersByFerryId($id);
+   $this->deleteCrewMemberByFerryId($id);
     $sql = "DELETE FROM ferry WHERE id = ?";
     $result = $this->conn->prepare($sql);
     $result->execute([$id]);
  }
+
+ public function deleteFerryByOwnershipId($ownership_id) {
+   $sql = "DELETE FROM ferry WHERE ownership_id = ?";
+   $result = $this->conn->prepare($sql);
+   $result->execute([$ownership_id]);
+}
+
+public function deleteFerryByCountryId($country_id) {
+   $sql = "DELETE FROM ferry WHERE country_id = ?";
+   $result = $this->conn->prepare($sql);
+   $result->execute([$country_id]);
+}
+
 
  public function getAllRooms() {
     $sql = "SELECT id, name, floor, ferry_id FROM room";
@@ -95,15 +108,19 @@ class DBConnection {
 }
 
 public function deleteRoom($id) {
+   $this->deletePassengerByRoomId($id);
+   $this->deleteCrewMemberByRoomId($id);
     $sql = "DELETE FROM room WHERE id = ?";
     $result = $this->conn->prepare($sql);
     $result->execute([$id]);
 }
 
-public function deleteRoomByFerryId($ferryId) {
+public function deleteRoomByFerryId($ferry_id) {
+   $this->deletePassengerByFerryId($ferry_id);
+   $this->deleteCrewMemberByFerryId($ferry_id);
    $sql = "DELETE FROM room WHERE ferry_id = ?";
    $result = $this->conn->prepare($sql);
-   $result->execute([$ferryId]);
+   $result->execute([$ferry_id]);
 }
 
  public function getAllPassengers() {
@@ -138,10 +155,16 @@ public function deletePassenger($id) {
     $result->execute([$id]);
 }
 
-public function deletePassengerByFerryId($ferryId) {
+public function deletePassengerByFerryId($ferry_id) {
    $sql = "DELETE FROM passenger WHERE ferry_id = ?";
    $result = $this->conn->prepare($sql);
-   $result->execute([$ferryId]);
+   $result->execute([$ferry_id]);
+}
+
+public function deletePassengerByRoomId($room_id) {
+   $sql = "DELETE FROM passenger WHERE room_id = ?";
+   $result = $this->conn->prepare($sql);
+   $result->execute([$room_id]);
 }
 
 public function getAllCrewMembers() {
@@ -175,10 +198,16 @@ public function deleteCrewMember($id) {
    $result->execute([$id]);
 }
 
-public function deleteCrewMembersByFerryId($ferryId) {
-   $sql = "DELETE FROM crew WHERE ferry_id = ?";
-   $result = $this->conn->prepare($sql);
-   $result->execute([$ferryId]);
+public function deleteCrewMemberByFerryId($ferry_id) {
+  $sql = "DELETE FROM crew WHERE ferry_id = ?";
+  $result = $this->conn->prepare($sql);
+  $result->execute([$ferry_id]);
+}
+
+public function deleteCrewMemberByRoomId($room_id) {
+  $sql = "DELETE FROM crew WHERE room_id = ?";
+  $result = $this->conn->prepare($sql);
+  $result->execute([$room_id]);
 }
 
 public function getAllCountries() {
@@ -208,6 +237,7 @@ public function getAllCountries() {
 }
 
 public function deleteCountry($id) {
+   $this->deleteFerryByCountryId($id);
     $sql = "DELETE FROM country WHERE id = ?";
     $result = $this->conn->prepare($sql);
     $result->execute([$id]);
@@ -240,6 +270,7 @@ public function updateOwnership($id, $name, $networth) {
 }
 
 public function deleteOwnership($id) {
+   $this->deleteFerryByOwnershipId($id);
    $sql = "DELETE FROM ownership WHERE id = ?";
    $result = $this->conn->prepare($sql);
    $result->execute([$id]);
