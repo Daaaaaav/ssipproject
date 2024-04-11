@@ -40,6 +40,12 @@ if (isset($_POST["submit"])) {
             $errors[] = "Capacity must be a number";
         }
     }
+    if (empty($_POST["ownership_id"])) {
+        $errors[] = "Owner company is required";
+    }
+    if (empty($_POST["country_id"])) {
+        $errors[] = "Country of origin is required";
+    }
     $name = htmlspecialchars($_POST["name"]);
     $capacity = htmlspecialchars($_POST["capacity"]);
     $ticketfee = htmlspecialchars($_POST["ticketfee"]);
@@ -92,7 +98,7 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="row mt-3">
             <div class="col-4">
-                <label for="destination">Ferry Country Destination</label>
+                <label for="destination">Ferry Port Destination</label>
                 <input class="form-control" type="text" name="destination"
                     value="<?php echo htmlspecialchars($destination); ?>" placeholder="Enter Ferry Destination"/>
             </div>
